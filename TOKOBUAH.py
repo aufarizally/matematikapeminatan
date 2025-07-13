@@ -141,7 +141,7 @@ with tab2:
         top_fruit = metrics_df.iloc[0]
         st.markdown(f"""
             <div class="metric-card">
-                <h3 style="color:#F1FAEE;">🥇 {top_fruit['Buah']}</h3>
+                <h3 style="color:#000000;">🥇 {top_fruit['Buah']}</h3>
                 <p>Total Penjualan: <b>{round(top_fruit['Total Penjualan (kg)'], 1)} kg</b></p>
                 <p>Rata-rata Harian: <b>{round(top_fruit['Rata-rata Harian (kg)'], 1)} kg/hari</b></p>
                 <p>Rata-rata Mingguan: <b>{round(top_fruit['Rata-rata Mingguan (kg)'], 1)} kg/minggu</b></p>
