@@ -66,7 +66,7 @@ st.markdown("""
 }
 .graph-container {
     padding: 15px;
-    background-color: black;
+    background-color: white;
     border-radius: 10px;
 }
 </style>
