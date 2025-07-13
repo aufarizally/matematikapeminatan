@@ -60,7 +60,7 @@ st.markdown("""
     margin-bottom: 15px;
 }
 .fruit-selector {
-    background-color: #E6E6FA;
+    background-color: black;
     padding: 10px;
     border-radius: 5px;
 }
