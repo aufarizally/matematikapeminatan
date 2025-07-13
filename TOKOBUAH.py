@@ -90,7 +90,7 @@ with tab1:
     sale_date = st.date_input("Tanggal Penjualan", datetime.today(), key='sale_date')
     
     # Input sales by fruit - using kg units
-    st.markdown("**Jumlah Terjual** (kg)")
+    st.markdown("Jumlah Terjual (kg)")
     cols = st.columns(3)
     
     with cols[0]:
@@ -182,11 +182,11 @@ with tab2:
                                               key=f'lead_{selected_fruit}')
                     ordering_cost = st.number_input("Biaya Pemesanan (Rp)", min_value=1000, 
                                                   value=10000, step=1000)
-                    st.markdown(f"**Permintaan Mingguan:** {round(fruit_data['Rata-rata Mingguan (kg)'], 1)} kg")
+                    st.markdown(f"Permintaan Mingguan: {round(fruit_data['Rata-rata Mingguan (kg)'], 1)} kg")
                 with cols[1]:
                     holding_cost = st.number_input("Biaya Penyimpanan (Rp/kg/minggu)", 
                                                  min_value=100, value=3500, step=100)
-                    st.markdown(f"**ROP Saat Ini:** {round(fruit_data['ROP (kg)'], 1)} kg")
+                    st.markdown(f"ROP Saat Ini: {round(fruit_data['ROP (kg)'], 1)} kg")
                 
                 # Calculate weekly EOQ
                 weekly_demand = fruit_data['Rata-rata Mingguan (kg)']
@@ -197,12 +197,18 @@ with tab2:
                 daily_demand = fruit_data['Rata-rata Harian (kg)']
                 new_rop = daily_demand * lead_time
                 
+                # Calculate total inventory cost
+                total_inventory_cost = ordering_cost + (holding_cost * (eoq / 2))
+                total_inventory_cost_rounded = round(total_inventory_cost, 2)
+                
                 st.markdown("### Hasil Perhitungan")
-                col1, col2 = st.columns(2)
+                col1, col2, col3 = st.columns(3)
                 with col1:
                     st.metric("Economic Order Quantity (EOQ)", f"{eoq_rounded} kg/minggu")
                 with col2:
                     st.metric("Reorder Point (ROP)", f"{round(new_rop, 1)} kg")
+                with col3:
+                    st.metric("Total Biaya Persediaan", f"Rp {total_inventory_cost_rounded}")
                 
                 # Stock level visualization
                 st.markdown("### 📊 Proyeksi Level Stok")
